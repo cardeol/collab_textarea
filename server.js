@@ -12,11 +12,11 @@ createDoc(startServer);
 // Create initial document then fire callback
 function createDoc(callback) {
   var connection = backend.connect();
-  var doc = connection.get('examples', 'richtext');
+  var doc = connection.get('SummaryService', 'richtext');
   doc.fetch(function(err) {
     if (err) throw err;
     if (doc.type === null) {
-      doc.create([{insert: 'Hi!'}], 'rich-text', callback);
+      doc.create([{insert: 'Hello World'}], 'rich-text', callback);
       return;
     }
     callback();

@@ -8,7 +8,6 @@ sharedb.types.register(rtf.type);
 var socket = new ReconnectingWebSocket('ws://' + window.location.host);
 var connection = new sharedb.Connection(socket);
 
-// For testing reconnection
 window.disconnect = function() {
   connection.close();
 };
@@ -17,7 +16,7 @@ window.connect = function() {
   connection.bindToSocket(socket);
 };
 
-var doc = connection.get('examples', 'richtext');
+var doc = connection.get('SummaryService', 'richtext');
 doc.subscribe(function(err) {
   if (err) throw err;
   var quill = new Quill('#editor', {theme: 'snow'});
