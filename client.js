@@ -1,7 +1,7 @@
 var ReconnectingWebSocket = require('reconnecting-websocket');
-var sharedb = require('sharedb/lib/client');
 var rtf = require('rich-text');
 var Quill = require('quill');
+var sharedb = require('sharedb/lib/client');
 
 sharedb.types.register(rtf.type);
 
@@ -22,6 +22,7 @@ doc.subscribe(function(err) {
   var quill = new Quill('#editor', {theme: 'snow'});
   quill.setContents(doc.data);
   quill.on('text-change', function(delta, oldDelta, source) {
+    console.log(source,delta);
     if (source !== 'user') return;
     doc.submitOp(delta, {source: quill});
   });
